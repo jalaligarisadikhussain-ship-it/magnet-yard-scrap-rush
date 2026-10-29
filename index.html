@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#0b1520" />
+    <link rel="icon" type="image/svg+xml" href="./icon.svg" />
+    <link rel="apple-touch-icon" href="./icon.png" />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Magnet Yard: Scrap Rush" />
+    <meta property="og:description" content="Pilot a magnetic drone, collect orbiting scrap, outsmart hazards and upgrade your yard tech." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="description" content="Original 3D magnetic scrapyard arcade game: collect scrap, race the clock, bank cargo and upgrade your drone.">
+    <title>Magnet Yard: Scrap Rush</title>
+  </head>
+  <body>
+    <div id="app">
+      <div id="game"></div>
+      <div id="hud">
+        <div class="topbar">
+          <div class="brand"><span class="brand-icon">&#9881;</span><div><strong>MAGNET YARD</strong><small>SCRAP RUSH - RELEASE CANDIDATE</small></div></div>
+          <div class="stats">
+            <div class="stat"><span>COINS</span><strong id="coins">0</strong></div>
+            <div class="stat"><span>TIME</span><strong id="timer">90</strong></div>
+            <button id="mute" class="round" aria-label="Mute game sounds">&#9835;</button>
+            <button id="pause" class="round" aria-label="Pause">&#10074;&#10074;</button>
+          </div>
+        </div>
+        <div class="side">
+          <div class="panel"><div class="caption">CARGO HOLD <span id="capacity">0 / 18</span></div><div class="track"><div id="cargoBar" class="fill aqua"></div></div>
+            <div class="risk-label">ORBIT INSTABILITY</div><div class="track risk-track"><div id="riskBar" class="fill danger"></div></div>
+            <div id="cargoHint" class="mini">Light cargo = faster drone</div></div>
+          <div class="panel"><div class="caption">MAGNET CHAIN <span id="combo">x1.0</span></div><div class="track"><div id="comboBar" class="fill amber"></div></div><div class="mini">Match scrap materials for bonus</div></div>
+          <div class="panel contract-panel"><div class="caption">SHIFT CONTRACT <span id="contractReward">+40</span></div>
+            <strong id="contractName" class="contract-name">Recycle 2 cargo loads</strong>
+            <div class="track"><div id="contractBar" class="fill aqua"></div></div>
+            <div id="contractProgress" class="mini">0/2</div>
+          </div>
+          <button id="upgrades" class="upgrade-button">&#9889; UPGRADE DRONE</button>
+        </div>
+        <div id="beacon" class="beacon"><span id="beaconArrow" class="beacon-arrow">&#8592;</span><span>RECYCLER<br><b id="beaconDistance">4m</b></span></div>
+        <div id="cachePanel" class="cache-panel hidden" role="status" aria-label="Golden salvage drop">
+          <div class="cache-heading">GOLDEN SALVAGE</div>
+          <div class="cache-info"><strong id="cacheState">DROP ACTIVE</strong><span id="cacheTime">16s</span></div>
+          <div id="cacheHint" class="cache-hint">Collect the gold core and bank it for 60 coins.</div>
+        </div>
+        <div id="rushPanel" class="rush-panel hidden" role="status" aria-label="Priority delivery countdown">
+          <div class="rush-heading">PRIORITY DELIVERY</div>
+          <div class="rush-body"><strong id="rushTimer">18s</strong><span>+70 BONUS</span></div>
+          <div class="rush-caption">Bank the rare alloy before the timer ends!</div>
+          <div class="rush-track"><div id="rushFill"></div></div>
+        </div>
+        <div id="objective" class="objective"><span class="dot"></span><span id="objectiveText">Collect metal scrap with your magnet</span></div>
+        <div id="toast" class="toast" aria-live="polite"></div>
+        <div id="help">WASD / ARROW KEYS TO FLY &middot; CLICK TO MOVE &middot; RETURN TO BLUE RECYCLER TO BANK CARGO</div>
+        <div id="joystick" class="joystick"><div id="stick" class="stick"></div></div>
+        <button id="surge" class="surge-button" type="button" aria-label="Activate Magnet Surge">MAGNET SURGE</button>
+        <div id="introOverlay" class="overlay intro-overlay" role="dialog" aria-modal="true" aria-labelledby="introTitle">
+          <div class="dialog intro-dialog">
+            <div class="intro-chip">ORIGINAL 3D SCRAPYARD ARCADE</div>
+            <h1 id="introTitle">MAGNET YARD<span class="intro-accent">SCRAP RUSH</span></h1>
+            <p class="intro-copy">Pilot a magnetic drone. Pull scrap into orbit, bank cargo for coins, avoid active crushers and unlock better tech.</p>
+            <div class="intro-pills">
+              <div><strong>01</strong><span>MAGNETIZE</span></div>
+              <div><strong>02</strong><span>BANK CARGO</span></div>
+              <div><strong>03</strong><span>UPGRADE</span></div>
+            </div>
+            <div class="intro-controls"><span>DESKTOP: WASD / ARROWS + SPACE FOR SURGE</span><span>MOBILE: TOUCH JOYSTICK + SURGE BUTTON</span></div>
+            <p class="intro-stats">PERSONAL BEST <strong id="introBest">0</strong> &middot; COMPLETED SHIFTS <strong id="introShifts">0</strong></p>
+            <button id="playGame" class="primary intro-play" type="button">START 90-SECOND SHIFT</button>
+            <div class="intro-footer">Golden Salvage &middot; Priority Deliveries &middot; Permanent Upgrades &middot; <a href="./privacy.html" target="_blank" rel="noopener noreferrer">Privacy</a></div>
+          </div>
+        </div>
+        <div id="pauseOverlay" class="overlay hidden">
+          <div class="dialog"><div class="eyebrow">GAME PAUSED</div><h1>Take a breather</h1><p>Your cargo is safe while paused.</p>
+            <div class="settings-row"><label for="quality">GRAPHICS QUALITY</label><select id="quality" aria-label="Graphics quality"><option value="eco">ECO - fast</option><option value="balanced">BALANCED</option><option value="crisp">CRISP - detailed</option></select></div>
+            <div class="settings-fps">Measured performance: <strong id="fps">-- FPS</strong></div>
+            <div class="actions"><button id="resume" class="primary">RESUME RUN</button><button id="restartPause" class="secondary">RESTART RUN</button></div></div>
+        </div>
+        <div id="shopOverlay" class="overlay hidden">
+          <div class="dialog wide"><div class="eyebrow">WORKSHOP</div><h1>Drone upgrades</h1><p>Permanent upgrades. Bank scrap at the blue recycler to earn coins.</p><div id="shopItems" class="shop-items"></div><div class="actions"><button id="closeShop" class="primary">BACK TO YARD</button></div></div>
+        </div>
+        <div id="endOverlay" class="overlay hidden">
+          <div class="dialog"><div class="eyebrow">SHIFT COMPLETE</div><h1>Scrap secured!</h1><p id="runSummary"></p><div class="grade-line">SHIFT RANK <strong id="rank">TRAINEE</strong></div><div class="best-line">PERSONAL BEST <strong id="bestCoins">0</strong> &middot; SHIFTS <strong id="shiftCount">0</strong></div><div class="result"><span>COINS BANKED</span><strong id="runCoins">0</strong></div><div class="actions"><button id="playAgain" class="primary">NEXT SHIFT &#8594;</button><button id="endShop" class="secondary">UPGRADE DRONE</button></div></div>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

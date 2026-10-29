@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-label="Magnet Yard Scrap Rush original 3D arcade cover">
+ <defs>
+  <linearGradient id="bg" x2="1" y2="1"><stop stop-color="#071522"/><stop offset=".55" stop-color="#112c3b"/><stop offset="1" stop-color="#271f2c"/></linearGradient>
+  <radialGradient id="halo"><stop stop-color="#35e8d9" stop-opacity=".48"/><stop offset=".55" stop-color="#11c5be" stop-opacity=".12"/><stop offset="1" stop-color="#11c5be" stop-opacity="0"/></radialGradient>
+  <linearGradient id="steel" x2=".6" y2="1"><stop stop-color="#d7f6fb"/><stop offset=".45" stop-color="#547b94"/><stop offset="1" stop-color="#1b364b"/></linearGradient>
+  <linearGradient id="beam" x2="0" y2="1"><stop stop-color="#62f7e7" stop-opacity=".7"/><stop offset="1" stop-color="#47c5db" stop-opacity=".05"/></linearGradient>
+  <linearGradient id="copper" x2="1" y2="1"><stop stop-color="#ffe39b"/><stop offset=".55" stop-color="#ffad54"/><stop offset="1" stop-color="#c25845"/></linearGradient>
+  <pattern id="grid" width="72" height="72" patternUnits="userSpaceOnUse"><path d="M72 0H0V72" fill="none" stroke="#4b8993" stroke-opacity=".13" stroke-width="2"/></pattern>
+  <filter id="glow"><feGaussianBlur stdDeviation="11" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  <filter id="shadow"><feDropShadow dx="0" dy="18" stdDeviation="17" flood-color="#000" flood-opacity=".6"/></filter>
+ </defs>
+ <rect width="1600" height="900" fill="url(#bg)"/>
+ <circle cx="1120" cy="395" r="580" fill="url(#halo)"/>
+ <rect width="1600" height="900" fill="url(#grid)"/>
+ <g fill="#0a1d29" stroke="#4b9099" stroke-opacity=".22" stroke-width="5">
+  <path d="M0 610V345h90v-75h130v130h90V260h154v322z"/>
+  <path d="M1110 570V325h100V195h130v230h110V288h155v315z"/>
+  <path d="M1300 320v-210h20v210m-125-210h220" fill="none"/>
+ </g>
+ <g stroke="#6be6d9" stroke-width="3" stroke-opacity=".23" fill="none">
+  <path d="M0 710L520 555M0 830L650 565M1600 750L1320 555M1600 880L1220 560"/>
+  <path d="M0 745H1600M0 812H1600M0 886H1600"/>
+ </g>
+ <g opacity=".8">
+  <path d="M735 665L860 625l90 40 60-60 95 48 70-25 130 60-10 55H705Z" fill="#263747" stroke="#617b91" stroke-width="5"/>
+  <path d="M932 700l88-40 54 16-10 58-93 17z" fill="url(#copper)"/>
+  <path d="M1140 656l100-45 88 39-23 62-120 6z" fill="#a4bfca"/>
+  <circle cx="1180" cy="714" r="37" fill="#f9ba65" opacity=".4" filter="url(#glow)"/>
+ </g>
+ <!-- magnetic beam and scrap silhouettes -->
+ <path d="M1033 485L860 765Q1015 720 1170 755Z" fill="url(#beam)" opacity=".68"/>
+ <path d="M955 611L1075 740M1115 604L995 744" stroke="#6fffee" stroke-width="8" stroke-dasharray="10 18" opacity=".5" filter="url(#glow)"/>
+ <g filter="url(#shadow)" transform="translate(1035 420) rotate(-11)">
+  <ellipse cy="110" rx="300" ry="92" fill="#19e4d4" opacity=".25" filter="url(#glow)"/>
+  <path d="M-258-75h516l-53 160H-206Z" fill="#244b5e" stroke="#83e4e7" stroke-width="12"/>
+  <path d="M-176-110h352l72 72-48 67h-400l-49-67Z" fill="url(#steel)" stroke="#b7ecf3" stroke-width="7"/>
+  <ellipse cy="-46" rx="158" ry="52" fill="#103d55" stroke="#4ff4ed" stroke-width="17" filter="url(#glow)"/>
+  <ellipse cy="-49" rx="88" ry="26" fill="#9df9f0" opacity=".35"/>
+  <path d="M-105 55H105L75 118H-75Z" fill="#102c40" stroke="#56e9e5" stroke-width="7"/>
+  <rect x="-70" y="65" width="140" height="15" rx="7" fill="#82ffee" filter="url(#glow)"/>
+  <g fill="#29485d" stroke="#b5e7ea" stroke-width="9">
+   <circle cx="-265" cy="-32" r="69"/><circle cx="265" cy="-32" r="69"/>
+  </g>
+  <path d="M-335-32H-195M-265-103V39M195-32H335M265-103V39" stroke="#66fae4" stroke-width="18" stroke-linecap="round" filter="url(#glow)"/>
+  <circle cx="-265" cy="-32" r="21" fill="#f8bf6d"/><circle cx="265" cy="-32" r="21" fill="#f8bf6d"/>
+ </g>
+ <g transform="translate(760 700)" filter="url(#glow)">
+  <path d="M-50-10l35-57 72 13 31 55-55 55-72-13z" fill="url(#steel)" stroke="#c8ebf1" stroke-width="6"/>
+  <path d="M-35-15l22-34m47-8 26 42M-12 51l47-18" stroke="#65dfda" stroke-width="5"/>
+ </g>
+ <g transform="translate(1285 735) rotate(20)">
+  <path d="M-55-58l84-31 75 35-12 92-81 38-70-52Z" fill="url(#copper)" stroke="#ffe49b" stroke-width="7"/>
+  <path d="M-10-72V52M55-56l-20 103" stroke="#ffedb0" stroke-width="6"/>
+ </g>
+ <!-- foreground typography -->
+ <rect x="68" y="71" width="190" height="39" rx="19" fill="#78ecd6" fill-opacity=".15" stroke="#73f8de" stroke-opacity=".7" stroke-width="2"/>
+ <text x="88" y="97" fill="#acffe8" font-family="Arial, sans-serif" font-size="21" font-weight="bold" letter-spacing="3">3D ARCADE</text>
+ <text x="70" y="260" fill="#f6faf7" stroke="#122b37" stroke-width="7" paint-order="stroke" font-family="Arial Black, Impact, sans-serif" font-weight="900" font-size="122" letter-spacing="-5">MAGNET</text>
+ <text x="70" y="389" fill="#f6faf7" stroke="#122b37" stroke-width="7" paint-order="stroke" font-family="Arial Black, Impact, sans-serif" font-weight="900" font-size="155" letter-spacing="-7">YARD</text>
+ <rect x="72" y="429" width="480" height="10" rx="5" fill="#7af8dd"/>
+ <text x="70" y="536" fill="#ffca7b" font-family="Arial Black, Impact, sans-serif" font-weight="900" font-size="91" letter-spacing="2" stroke="#162835" stroke-width="5" paint-order="stroke">SCRAP RUSH</text>
+ <text x="77" y="595" fill="#b1d7e0" font-family="Arial, sans-serif" font-size="27" font-weight="bold" letter-spacing="3">COLLECT. BANK. UPGRADE.</text>
+ <g font-family="Arial, sans-serif" fill="#c0ebec" font-weight="bold" font-size="23" letter-spacing="2">
+  <text x="76" y="817">MAGNET SURGE</text><circle cx="312" cy="809" r="6" fill="#ffbe6f"/>
+  <text x="340" y="817">GOLDEN SALVAGE</text><circle cx="640" cy="809" r="6" fill="#ffbe6f"/>
+  <text x="668" y="817">FINAL SPRINT</text>
+ </g>
+ <rect x="17" y="17" width="1566" height="866" rx="31" fill="none" stroke="#71dacc" stroke-opacity=".44" stroke-width="3"/>
+</svg>
