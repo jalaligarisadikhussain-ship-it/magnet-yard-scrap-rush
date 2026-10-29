@@ -16,6 +16,7 @@ interface CrazyGameLifecycle {
 }
 interface CrazySdk {
   init: () => Promise<void>;
+  environment?: 'local' | 'crazygames' | 'disabled';
   game?: CrazyGameLifecycle;
 }
 
@@ -34,7 +35,7 @@ function shouldLoadSdk(): boolean {
   const crazyGamesEmbed = /(^|\.)crazygames\.com$/i.test(embedHost);
   const mockTest = import.meta.env.DEV &&
     new URLSearchParams(window.location.search).get('cg-sdk-test') === '1';
-  return officialHost || crazyGamesEmbed || mockTest;
+  return import.meta.env.MODE === 'crazygames' || officialHost || crazyGamesEmbed || mockTest;
 }
 
 function loadCrazyGamesScript(): Promise<void> {
@@ -84,6 +85,7 @@ export class GamePlatform {
     if (!sdk) return;
     try {
       await sdk.init();
+      if (sdk.environment === 'disabled') return;
       this.sdk = sdk;
       this.ready = true;
       if (this.playing) this.startSignal();

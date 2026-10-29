@@ -1,11 +1,12 @@
 {
   "name": "magnet-yard-scrap-rush",
-  "version": "1.0.0-rc.1",
+  "version": "1.0.0",
   "private": true,
   "type": "module",
   "scripts": {
     "dev": "vite --host 0.0.0.0",
     "build": "tsc --noEmit && vite build",
+    "build:portal": "tsc --noEmit && vite build --mode crazygames --outDir dist-portal",
     "preview": "vite preview --host 0.0.0.0",
     "test:e2e": "node scripts/e2e.mjs"
   },

@@ -38,6 +38,12 @@ const element = <T extends HTMLElement>(id: string): T => {
 class Sound {
   private ctx: AudioContext | null = null;
   muted = false;
+  unlock() {
+    try {
+      this.ctx ??= new AudioContext();
+      if (this.ctx.state !== 'running' && this.ctx.state !== 'closed') void this.ctx.resume().catch(() => {});
+    } catch { /* Audio is optional. */ }
+  }
   play(kind: 'pickup' | 'bank' | 'hit' | 'upgrade' | 'end') {
     if (this.muted) return;
     try {
@@ -124,6 +130,8 @@ class ScrapRush {
     this.applyQuality();
     this.bindInput();
     this.bindUI();
+    document.addEventListener('pointerup', () => this.sound.unlock());
+    document.addEventListener('keydown', () => this.sound.unlock());
     this.refreshShop();
     this.refreshHUD();
     this.resize();
@@ -797,4 +805,15 @@ class ScrapRush {
   }
 }
 
-new ScrapRush();
+try {
+  new ScrapRush();
+} catch (error) {
+  console.error('Game startup failed', error);
+  const intro = element('introOverlay');
+  intro.replaceChildren();
+  const title = document.createElement('h1');
+  title.textContent = '3D graphics unavailable';
+  const message = document.createElement('p');
+  message.textContent = 'This game needs WebGL2. Enable graphics acceleration in your browser settings, then reload. You can also try a current Chrome or Edge browser on another device. Your saved progress has not been reset.';
+  intro.append(title, message);
+}
